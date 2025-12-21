@@ -21,12 +21,21 @@ public class Merchant {
     @Column(name = "qualification_status")
     private Integer qualificationStatus; // 资质认证状态
 
-    // --- 新增字段 (解决 Controller 报错) ---
     private String address;         // 详细地址
     private String description;     // 商家描述/公告
 
     @Column(name = "image_url")
     private String imageUrl;        // 商家图片/头像
+
+    // --- 【关键新增】解决报错缺失的字段 ---
+    @Column(name = "id_card_front_uri")
+    private String idCardFrontUri;  // 身份证正面
+
+    @Column(name = "id_card_back_uri")
+    private String idCardBackUri;   // 身份证背面
+
+    @Column(name = "license_uri")
+    private String licenseUri;      // 营业执照
 
     // --- 无参构造函数 ---
     public Merchant() {}
@@ -105,8 +114,6 @@ public class Merchant {
         this.qualificationStatus = qualificationStatus;
     }
 
-    // --- 新增字段的 Getters/Setters ---
-
     public String getAddress() {
         return address;
     }
@@ -129,5 +136,31 @@ public class Merchant {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    // --- 【关键新增】新字段的 Getter/Setter 方法 ---
+
+    public String getIdCardFrontUri() {
+        return idCardFrontUri;
+    }
+
+    public void setIdCardFrontUri(String idCardFrontUri) {
+        this.idCardFrontUri = idCardFrontUri;
+    }
+
+    public String getIdCardBackUri() {
+        return idCardBackUri;
+    }
+
+    public void setIdCardBackUri(String idCardBackUri) {
+        this.idCardBackUri = idCardBackUri;
+    }
+
+    public String getLicenseUri() {
+        return licenseUri;
+    }
+
+    public void setLicenseUri(String licenseUri) {
+        this.licenseUri = licenseUri;
     }
 }
