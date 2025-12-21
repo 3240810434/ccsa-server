@@ -1,6 +1,5 @@
 package com.gxuwz.ccsa_server.entity;
 
-// 【关键修改】将 jakarta 改为 javax
 import javax.persistence.*;
 
 @Entity
@@ -11,18 +10,28 @@ public class Merchant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String community;
-    private String name;
-    private String contact;
-    private String gender;
-    private String phone;
-    private String password;
-    private String status;
+    private String community;       // 所属小区
+    private String name;            // 店铺名称
+    private String contact;         // 联系人
+    private String gender;          // 性别
+    private String phone;           // 电话
+    private String password;        // 密码
+    private String status;          // 状态 (pending, approved, rejected)
 
     @Column(name = "qualification_status")
-    private Integer qualificationStatus;
+    private Integer qualificationStatus; // 资质认证状态
 
+    // --- 新增字段 (解决 Controller 报错) ---
+    private String address;         // 详细地址
+    private String description;     // 商家描述/公告
+
+    @Column(name = "image_url")
+    private String imageUrl;        // 商家图片/头像
+
+    // --- 无参构造函数 ---
     public Merchant() {}
+
+    // --- Getters and Setters ---
 
     public Integer getId() {
         return id;
@@ -94,5 +103,31 @@ public class Merchant {
 
     public void setQualificationStatus(Integer qualificationStatus) {
         this.qualificationStatus = qualificationStatus;
+    }
+
+    // --- 新增字段的 Getters/Setters ---
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
